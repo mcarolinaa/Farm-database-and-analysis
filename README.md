@@ -20,6 +20,8 @@ Tools:
 
 + QGIS
 
++ R
+
 Files:
 
 + create_insert_data.txt = SQL commands and workflow to create tables with farm data into PostgreSQL
