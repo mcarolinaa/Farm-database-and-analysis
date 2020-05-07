@@ -6,19 +6,19 @@ The aim of the project was to create a database and analyze crop farming data.
 
 Inputs:
 
-+yield data from harvester
++ yield data from harvester
 
-+soil fertility data from field samples
++ soil fertility data from field samples
 
-+satellite image
++ satellite image
 
 Tools:
 
-+PostgreSQL
++ PostgreSQL
 
-+PostGIS
++ PostGIS
 
-+QGIS
++ QGIS
 
 Files:
 
