@@ -1,6 +1,6 @@
 # Farm-database-and-analysis
 
-This is a repository containing some of the data to perform a project to a comercial farm.
+This is a repository containing a sample of the data and workflow used to make a project of precision agriculture to a comercial farm.
 
 The aim of the project was to create a database and analyze crop farming data.
 
