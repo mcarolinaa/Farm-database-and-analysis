@@ -1,0 +1,67 @@
+#-----------------------------------------------------------------
+# Script to create tables: MAIZE and SOY inside database FZMORENA
+#-----------------------------------------------------------------
+
+
+#----
+# SQL: Creating database:
+
+ CREATE DATABASE fzmorena
+WITH OWNER = postgres
+TEMPLATE = template1
+ENCODING = 'UTF8'
+ 
+
+#-----
+# SQL: Create table: Maize  in 2018:
+ 
+ CREATE TABLE milho_2018
+ (
+	 MILHO_ID SERIAL,
+	 COORDS GEOMETRY(POINT, 4326),
+	 REGIAO VARCHAR(10),
+	 TITULO NUMERIC,
+	 ELEVACAO NUMERIC,
+	 DISTANCIA NUMERIC,
+	 DURACAO SMALLINT,
+	 VELOC NUMERIC,
+	 COMBUST NUMERIC,
+	 UMIDADE NUMERIC,
+	 MASSA NUMERIC,
+	 LARGURA NUMERIC,
+	 ACOPL BOOLEAN,
+	 REND_MASS NUMERIC,
+	 REND_UMI NUMERIC,
+	 REND_SEC NUMERIC,
+	 HORARIO INTEGER,
+	 PRIMARY KEY(MILHO_ID)
+ )
+ 
+
+# Data in .xls file:
+# EXCEL: 1.the excel code: this can be drag and dropped or put into a macro:
+
+="(ST_SetSRID(ST_MakePoint("&A2&", "&B2&"),4326), '"&C2&"', "&SE(D2;D2;"NULL")&",  "&SE(E2;E2;"NULL")&", "&SE(F2;F2;"NULL")&", "&SE(G2;G2;"NULL")&", "&SE(H2;H2;"NULL")&", "&SE(I2;I2;"NULL")&", "&SE(J2;J2;"NULL")&", "&SE(K2;K2;"NULL")&", "&SE(L2;L2;"NULL")&", '"&M2&"', "&SE(N2;N2;"NULL")&","&SE(O2;O2;"NULL")&","&SE(P2;P2;"NULL")&","&SE(Q2;Q2;"NULL")&"),"
+
+
+
+# Data in PostgreSQL: (result from previous step on Excel)
+# SQL: 2. the sql code: example for just one line:
+
+ INSERT INTO milho_2018 (COORDS, REGIAO, TITULO, ELEVACAO, DISTANCIA,
+					DURACAO, VELOC, COMBUST, UMIDADE, MASSA, LARGURA,
+					ACOPL, REND_MASS, REND_UMI, REND_SEC, HORARIO) VALUES
+(ST_SetSRID(ST_MakePoint(-57.67612007, -13.85929373),4326), 'formula TL', 107.6,  593.1, 0.46, NULL, 1.6, 47.6, 3, 1.5, 9.14, 'true', 3426.5,3426.5,3426.5,1528735295);
+
+
+
+# Obs: Remember to be consistent with the SRID
+
+#----
+# SQL: To transform a SRID of a geometry column:
+
+SELECT UpdateGeometrySRID('milho_2017','coords',4618);
+
+
+
+
